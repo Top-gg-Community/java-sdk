@@ -30,6 +30,6 @@ repositories {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.DiscordBotList:Java-Wrapper:-SNAPSHOT'
+    compile 'com.github.DiscordBotList:Java-Wrapper:VERSION'
 }
 ```
