@@ -4,6 +4,17 @@ A Java wrapper for the [discordbots.org API](https://discordbots.org/api/docs)
 ### Download
 
 #### Maven
+
+Replace `VERSION` with the latest version or commit.
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
 ```xml
 <dependencies>
     <dependency>
@@ -12,14 +23,6 @@ A Java wrapper for the [discordbots.org API](https://discordbots.org/api/docs)
         <version>VERSION</version>
     </dependency>
 </dependencies>
-```
-```xml
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
 ```
 
 #### Gradle 
