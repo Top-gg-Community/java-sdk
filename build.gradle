@@ -1,0 +1,13 @@
+group 'co.vulpin'
+version '1.0'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.json', name: 'json', version: '20171018'
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.9.1'
+}
