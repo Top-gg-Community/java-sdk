@@ -51,7 +51,7 @@ DiscordBotListAPI api = new DiscordBotListAPI.Builder()
 
 DBL provides three ways to post your bots stats.
 
-#####\#1
+**#1**
 Posts the server count for the whole bot.
 ```java
 String botId = ...;
@@ -61,7 +61,7 @@ api.setStats(botId, serverCount);
 ```
 
 
-#####\#2
+**#2**
 Posts the server count for an individual shard.
 ```java
 String botId = ...;
@@ -72,7 +72,7 @@ int shardCount = ...;
 api.setStats(botId, serverCount, shardId, shardCount);
 ```
 
-#####\#3
+**#3**
 Posts the server counts for every shard in one request.
 ```java
 String botId = ...;
