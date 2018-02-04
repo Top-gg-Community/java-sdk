@@ -33,6 +33,8 @@ public class Bot extends Entity {
     @SerializedName("support")
     private String supportInvite;
 
+    private String vanity;
+
     private String prefix;
 
     @SerializedName("lib")
