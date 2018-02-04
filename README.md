@@ -1,7 +1,7 @@
 # Java Wrapper
 A Java wrapper for the [discordbots.org API](https://discordbots.org/api/docs)
 
-### Download
+## Download
 
 #### Maven
 
@@ -36,3 +36,62 @@ dependencies {
     compile 'com.github.DiscordBotList:Java-Wrapper:VERSION'
 }
 ```
+
+## Usage
+
+First, build a DiscordBotListAPI object.
+
+```java
+DiscordBotListAPI api = new DiscordBotListAPI.Builder()
+                                             .token("token")
+                                             .build();
+```
+
+#### Posting stats
+
+DBL provides three ways to post your bots stats.
+
+#####\#1
+Posts the server count for the whole bot.
+```java
+String botId = ...;
+int serverCount = ...;
+
+api.setStats(botId, serverCount);
+```
+
+
+#####\#2
+Posts the server count for an individual shard.
+```java
+String botId = ...;
+int serverCount = ...;
+int shardId = ...;
+int shardCount = ...;
+
+api.setStats(botId, serverCount, shardId, shardCount);
+```
+
+#####\#3
+Posts the server counts for every shard in one request.
+```java
+String botId = ...;
+List<Integer> shardServerCounts = ...; 
+
+api.setStats(botId, shardServerCounts);
+```
+
+#### Retrieving voters
+
+You can either get the full objects or a simple list of the user IDs.
+
+```java
+// will return the full User objects
+List<User> voters = api.getVoters("bot id"); 
+
+// will return a list of the user IDs
+List<String> voterIds = api.getVoterIds("bot id");
+```
+
+
+

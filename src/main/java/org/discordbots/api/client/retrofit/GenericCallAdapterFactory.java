@@ -7,6 +7,9 @@ import retrofit2.Retrofit;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
+/*
+ The entire point of this class is to automatically execute the requests when you call the methods.
+  */
 public class GenericCallAdapterFactory extends CallAdapter.Factory {
 
     public static GenericCallAdapterFactory create() {

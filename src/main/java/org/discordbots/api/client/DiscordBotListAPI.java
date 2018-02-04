@@ -28,10 +28,10 @@ public interface DiscordBotListAPI {
             @Query("offset") int offset
     );
 
-
     @GET("bots")
     Result<Bot> getBots(
             @Query("search") String search,
+            @Query("sort") String sort,
             @Query("limit") int limit,
             @Query("offset") int offset
     );
@@ -56,6 +56,7 @@ public interface DiscordBotListAPI {
             @Path("id") String userId
     );
 
+    // Uses Void instead of void because Retrofit doesn't like void
     @POST("bots/{id}/stats")
     Void setStats(
             @Path("id") String botId,
@@ -98,6 +99,7 @@ public interface DiscordBotListAPI {
         public DiscordBotListAPI build() {
             OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
+            // Adds the auth header + content type to all requests
             httpClient.addInterceptor((Interceptor.Chain chain) -> {
                 Request request = chain.request().newBuilder()
                                                  .addHeader("Authorization", token)
