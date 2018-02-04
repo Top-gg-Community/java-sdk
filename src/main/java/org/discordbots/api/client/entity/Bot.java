@@ -62,6 +62,7 @@ public class Bot extends Entity {
     public int getServerCount() { return serverCount; }
     public List<Integer> getShards() { return Collections.unmodifiableList(shards); }
 
+    public String getVanity() { return vanity; }
     public String getPrefix() { return prefix; }
     public int getPoints() { return points; }
     public String getSupportInvite() { return supportInvite; }
