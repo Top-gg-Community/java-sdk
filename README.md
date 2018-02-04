@@ -1,4 +1,4 @@
-# Java Wrapper
+# DBL Java Library
 A Java wrapper for the [discordbots.org API](https://discordbots.org/api/docs)
 
 ## Usage
