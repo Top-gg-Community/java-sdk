@@ -36,6 +36,17 @@ public interface DiscordBotListAPI {
             @Query("offset") int offset
     );
 
+    default Result<Bot> getBots(Map<String, String> searchValues, String sort, int limit, int offset) {
+        StringBuilder search = new StringBuilder();
+        searchValues.forEach((String key, String value) -> {
+            search.append(key);
+            search.append(" ");
+            search.append(value);
+            search.append(" ");
+        });
+        return getBots(search.toString(), sort, limit, offset);
+    }
+
     @GET("bots/{id}/stats")
     BotStats getBotStats(
             @Path("id") String botId
@@ -46,9 +57,21 @@ public interface DiscordBotListAPI {
             @Path("id") String botId
     );
 
+    @GET("bots/{id}/votes")
+    SimpleUser getVoters(
+            @Path("id") String botId,
+            @Query("days") int days
+    );
+
     @GET("bots/{id}/votes?onlyids=true")
     List<String> getVoterIds(
             @Path("id") String botId
+    );
+
+    @GET("bots/{id}/votes?onlyids=true")
+    List<String> getVoterIds(
+            @Path("id") String botId,
+            @Query("days") int days
     );
 
     @GET("users/{id}")

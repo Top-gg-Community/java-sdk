@@ -18,10 +18,6 @@ public class GenericCallAdapterFactory extends CallAdapter.Factory {
 
     @Override
     public CallAdapter<?, ?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
-        if (returnType instanceof okhttp3.Call) {
-            return null;
-        }
-
         return new CallAdapter<Object, Object>() {
             @Override
             public Type responseType() {
