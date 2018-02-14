@@ -5,6 +5,7 @@ apply plugin: 'java'
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -14,4 +15,6 @@ dependencies {
     // API wrapper framework
     compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.3.0'
     compile group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.3.0'
+
+    compileOnly group: 'net.dv8tion', name: 'JDA', version: '3.5.0_338'
 }
