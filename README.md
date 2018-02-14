@@ -75,7 +75,7 @@ Replace `VERSION` with the latest version or commit.
 <dependencies>
     <dependency>
         <groupId>com.github.DiscordBotList</groupId>
-        <artifactId>Java-Wrapper</artifactId>
+        <artifactId>DBL-Java-Wrapper</artifactId>
         <version>VERSION</version>
     </dependency>
 </dependencies>
@@ -89,7 +89,7 @@ repositories {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.DiscordBotList:Java-Wrapper:VERSION'
+    compile 'com.github.DiscordBotList:DBL-Java-Wrapper:VERSION'
 }
 ```
 
