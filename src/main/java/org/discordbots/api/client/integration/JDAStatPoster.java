@@ -19,6 +19,8 @@ public class JDAStatPoster extends ListenerAdapter {
 
     @Override
     public void onGuildJoin(GuildJoinEvent event) {
+        // Checks if the user joined in the last 20 minutes because Discord likes
+        // to send guild join events even when the bot is already in the server
         OffsetDateTime joinDate = event.getGuild().getSelfMember().getJoinDate();
         OffsetDateTime current = OffsetDateTime.now();
 
@@ -36,7 +38,15 @@ public class JDAStatPoster extends ListenerAdapter {
     private void updateStats(JDA jda) {
         String selfId = jda.getSelfUser().getId();
         int serverCount = jda.getGuilds().size();
-        api.setStats(selfId, serverCount);
+
+        JDA.ShardInfo shardInfo = jda.getShardInfo();
+        if(shardInfo != null) {
+            int shardId = shardInfo.getShardId();
+            int shardTotal = shardInfo.getShardTotal();
+            api.setStats(selfId, serverCount, shardId, shardTotal);
+        } else {
+            api.setStats(selfId, serverCount);
+        }
     }
 
 }
