@@ -34,7 +34,7 @@ public class Bot extends Entity {
     private String supportInvite;
 
     private String vanity;
-
+    private String github;
     private String prefix;
 
     @SerializedName("lib")
@@ -62,6 +62,7 @@ public class Bot extends Entity {
     public int getServerCount() { return serverCount; }
     public List<Integer> getShards() { return Collections.unmodifiableList(shards); }
 
+    public String getGithub() { return github; }
     public String getVanity() { return vanity; }
     public String getPrefix() { return prefix; }
     public int getPoints() { return points; }
@@ -70,7 +71,6 @@ public class Bot extends Entity {
     public List<String> getTags() { return Collections.unmodifiableList(tags); }
 
     public boolean isCertifiedBot() { return certifiedBot; }
-
     public boolean isLegacy() { return legacy; }
 
 }
