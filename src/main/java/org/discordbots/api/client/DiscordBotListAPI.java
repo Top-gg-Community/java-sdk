@@ -53,23 +53,12 @@ public interface DiscordBotListAPI {
     );
 
     @GET("bots/{id}/votes")
-    SimpleUser getVoters(
+    List<SimpleUser> getVoters(
             @Path("id") String botId
     );
 
     @GET("bots/{id}/votes")
-    SimpleUser getVoters(
-            @Path("id") String botId,
-            @Query("days") int days
-    );
-
-    @GET("bots/{id}/votes?onlyids=true")
-    List<String> getVoterIds(
-            @Path("id") String botId
-    );
-
-    @GET("bots/{id}/votes?onlyids=true")
-    List<String> getVoterIds(
+    List<SimpleUser> getVoters(
             @Path("id") String botId,
             @Query("days") int days
     );

@@ -14,4 +14,8 @@ public class SimpleUser extends Entity {
 
     public String getAvatar() { return avatar; }
 
+    public boolean matchesUser(String id){
+        return this.id.equalsIgnoreCase(id);
+    }
+
 }
