@@ -1,7 +1,5 @@
 package org.discordbots.api.client.entity;
 
-import java.util.StringJoiner;
-
 public class SimpleUser extends Entity {
 
     private String id;
