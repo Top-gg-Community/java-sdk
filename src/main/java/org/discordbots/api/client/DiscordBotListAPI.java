@@ -53,7 +53,7 @@ public interface DiscordBotListAPI {
     );
 
     @GET("bots/{id}/votes")
-    SimpleUser[] getVoters(
+    List<SimpleUser> getVoters(
             @Path("id") String botId
     );
 

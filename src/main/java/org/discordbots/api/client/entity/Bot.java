@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Collections;
 import java.util.List;
 
-public class Bot extends Entity {
+public class Bot {
 
     private String id;
     @SerializedName("client_id")
