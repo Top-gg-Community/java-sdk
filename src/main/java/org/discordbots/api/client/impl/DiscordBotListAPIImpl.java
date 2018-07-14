@@ -17,7 +17,11 @@ import java.util.stream.Collectors;
 
 public class DiscordBotListAPIImpl implements DiscordBotListAPI {
 
-    private static final HttpUrl baseUrl = HttpUrl.parse("https://discordbots.org/api");
+    private static final HttpUrl baseUrl = new HttpUrl.Builder()
+            .scheme("https")
+            .host("discordbots.org")
+            .addPathSegment("api")
+            .build();
 
     private final OkHttpClient httpClient;
     private final Gson gson;
