@@ -12,7 +12,7 @@ public class DefaultResponseTransformer<E> implements ResponseTransformer<E> {
 
     public DefaultResponseTransformer(Class<E> clazz, Gson gson) {
         this.clazz = clazz;
-        this.gson = new Gson();
+        this.gson = gson;
     }
 
     @Override
