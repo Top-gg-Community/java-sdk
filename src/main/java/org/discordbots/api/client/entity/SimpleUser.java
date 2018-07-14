@@ -4,6 +4,7 @@ public class SimpleUser extends Entity {
 
     private String id;
     private String username;
+    private String discriminator;
 
     private String avatar;
 
