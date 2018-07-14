@@ -149,6 +149,9 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return execute(req, responseTransformer);
     }
 
+    // The class provided in this is kinda unneeded because the only thing ever given to it
+    // is Void, but I wanted to make it expandable (maybe some post methods will return objects
+    // in the future)
     private <E> Future<E> post(HttpUrl url, JSONObject jsonBody, Class<E> clazz) {
         return post(url, jsonBody, new DefaultResponseTransformer<>(clazz, gson));
     }
