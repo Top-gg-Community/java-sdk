@@ -59,9 +59,9 @@ List<String> voterIds = api.getVoterIds("bot id");
 
 ## Download
 
-#### Maven
+Replace `VERSION` with the latest version or commit hash. The latest version can be found under releases.
 
-Replace `VERSION` with the latest version or commit.
+#### Maven
 
 ```xml
 <repositories>
@@ -89,7 +89,7 @@ repositories {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.DiscordBotList:DBL-Java-Wrapper:VERSION'
+    compile 'com.github.DiscordBotList:DBL-Java-Library:VERSION'
 }
 ```
 
