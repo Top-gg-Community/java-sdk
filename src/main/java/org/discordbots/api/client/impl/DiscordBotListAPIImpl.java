@@ -104,17 +104,38 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return get(url, Bot.class);
     }
 
-    public Future<BotResult> getBots(Map<String, Object> search, String sort, int limit, int offset, List<String> fields) {
+    public Future<BotResult> getBots(Map<String, String> search, int limit, int offset) {
+        return getBots(search, limit, offset, null);
+    }
+
+    public Future<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort) {
+        return getBots(search, limit, offset, sort, null);
+    }
+
+    public Future<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort, List<String> fields) {
+        // DBL search uses this format: field1: value1 field2: value2
         String searchString = search.entrySet().stream()
-                .map((entry) -> entry.getKey() + ": " + entry.getValue())
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .collect(Collectors.joining(" "));
 
-        HttpUrl url = baseUrl.newBuilder()
+        HttpUrl.Builder urlBuilder = baseUrl.newBuilder()
                 .addPathSegment("bots")
                 .addQueryParameter("search", searchString)
-                .build();
+                .addQueryParameter("limit", String.valueOf(limit))
+                .addQueryParameter("offset", String.valueOf(offset));
 
-        return get(url, BotResult.class);
+        if(sort != null) {
+            urlBuilder.addQueryParameter("sort", sort);
+        }
+
+        if(fields != null) {
+            String fieldsString = fields.stream()
+                    .collect(Collectors.joining(" "));
+
+            urlBuilder.addQueryParameter("fields", fieldsString);
+        }
+
+        return get(urlBuilder.build(), BotResult.class);
     }
 
     public Future<User> getUser(String userId) {

@@ -20,7 +20,9 @@ public interface DiscordBotListAPI {
     Future<SimpleUser[]> getVoters(String botId);
     Future<Boolean> hasVoted(String userId);
 
-    Future<BotResult> getBots(Map<String, Object> search, String sort, int limit, int offset, List<String> fields);
+    Future<BotResult> getBots(Map<String, String> search, int limit, int offset);
+    Future<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort);
+    Future<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort, List<String> fields);
     Future<Bot> getBot(String botId);
 
     Future<User> getUser(String userId);
