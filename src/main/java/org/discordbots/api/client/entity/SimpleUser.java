@@ -1,6 +1,6 @@
 package org.discordbots.api.client.entity;
 
-public class SimpleUser extends Entity {
+public class SimpleUser {
 
     private String id;
     private String username;

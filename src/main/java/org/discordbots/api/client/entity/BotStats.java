@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Collections;
 import java.util.List;
 
-public class BotStats extends Entity {
+public class BotStats {
 
     @SerializedName("server_count")
     private int serverCount;
