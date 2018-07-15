@@ -7,25 +7,25 @@ import org.discordbots.api.client.impl.DiscordBotListAPIImpl;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 
 public interface DiscordBotListAPI {
 
-    Future<Void> setStats(int shardId, int shardTotal, int serverCount);
-    Future<Void> setStats(List<Integer> shardServerCounts);
-    Future<Void> setStats(int serverCount);
+    CompletionStage<Void> setStats(int shardId, int shardTotal, int serverCount);
+    CompletionStage<Void> setStats(List<Integer> shardServerCounts);
+    CompletionStage<Void> setStats(int serverCount);
 
-    Future<BotStats> getStats(String botId);
+    CompletionStage<BotStats> getStats(String botId);
 
-    Future<SimpleUser[]> getVoters(String botId);
-    Future<Boolean> hasVoted(String userId);
+    CompletionStage<SimpleUser[]> getVoters(String botId);
+    CompletionStage<Boolean> hasVoted(String userId);
 
-    Future<BotResult> getBots(Map<String, String> search, int limit, int offset);
-    Future<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort);
-    Future<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort, List<String> fields);
-    Future<Bot> getBot(String botId);
+    CompletionStage<BotResult> getBots(Map<String, String> search, int limit, int offset);
+    CompletionStage<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort);
+    CompletionStage<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort, List<String> fields);
+    CompletionStage<Bot> getBot(String botId);
 
-    Future<User> getUser(String userId);
+    CompletionStage<User> getUser(String userId);
 
     class Builder {
 

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 
 public class DiscordBotListAPIImpl implements DiscordBotListAPI {
@@ -42,7 +42,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
                 .build();
     }
 
-    public Future<Void> setStats(int shardId, int shardTotal, int serverCount) {
+    public CompletionStage<Void> setStats(int shardId, int shardTotal, int serverCount) {
         JSONObject json = new JSONObject()
                 .put("shard_id", shardId)
                 .put("shard_total", shardTotal)
@@ -51,21 +51,21 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return setStats(json);
     }
 
-    public Future<Void> setStats(List<Integer> shardServerCounts) {
+    public CompletionStage<Void> setStats(List<Integer> shardServerCounts) {
         JSONObject json = new JSONObject()
                 .put("shards", shardServerCounts);
 
         return setStats(json);
     }
 
-    public Future<Void> setStats(int serverCount) {
+    public CompletionStage<Void> setStats(int serverCount) {
         JSONObject json = new JSONObject()
                 .put("server_count", serverCount);
 
         return setStats(json);
     }
 
-    private Future<Void> setStats(JSONObject jsonBody) {
+    private CompletionStage<Void> setStats(JSONObject jsonBody) {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("bots")
                 .addPathSegment(botId)
@@ -75,7 +75,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return post(url, jsonBody, Void.class);
     }
 
-    public Future<BotStats> getStats(String botId) {
+    public CompletionStage<BotStats> getStats(String botId) {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("bots")
                 .addPathSegment(botId)
@@ -85,7 +85,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return get(url, BotStats.class);
     }
 
-    public Future<SimpleUser[]> getVoters(String botId) {
+    public CompletionStage<SimpleUser[]> getVoters(String botId) {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("bots")
                 .addPathSegment(botId)
@@ -95,7 +95,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return get(url, SimpleUser[].class);
     }
 
-    public Future<Bot> getBot(String botId) {
+    public CompletionStage<Bot> getBot(String botId) {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("bots")
                 .addPathSegment(botId)
@@ -104,15 +104,15 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return get(url, Bot.class);
     }
 
-    public Future<BotResult> getBots(Map<String, String> search, int limit, int offset) {
+    public CompletionStage<BotResult> getBots(Map<String, String> search, int limit, int offset) {
         return getBots(search, limit, offset, null);
     }
 
-    public Future<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort) {
+    public CompletionStage<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort) {
         return getBots(search, limit, offset, sort, null);
     }
 
-    public Future<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort, List<String> fields) {
+    public CompletionStage<BotResult> getBots(Map<String, String> search, int limit, int offset, String sort, List<String> fields) {
         // DBL search uses this format: field1: value1 field2: value2
         String searchString = search.entrySet().stream()
                 .map(entry -> entry.getKey() + ": " + entry.getValue())
@@ -138,7 +138,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return get(urlBuilder.build(), BotResult.class);
     }
 
-    public Future<User> getUser(String userId) {
+    public CompletionStage<User> getUser(String userId) {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("users")
                 .addPathSegment(userId)
@@ -147,7 +147,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return get(url, User.class);
     }
 
-    public Future<Boolean> hasVoted(String userId) {
+    public CompletionStage<Boolean> hasVoted(String userId) {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("bots")
                 .addPathSegment(botId)
@@ -161,11 +161,11 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         });
     }
 
-    private <E> Future<E> get(HttpUrl url, Class<E> clazz) {
+    private <E> CompletionStage<E> get(HttpUrl url, Class<E> clazz) {
         return get(url, new DefaultResponseTransformer<>(clazz, gson));
     }
 
-    private <E> Future<E> get(HttpUrl url, ResponseTransformer<E> responseTransformer) {
+    private <E> CompletionStage<E> get(HttpUrl url, ResponseTransformer<E> responseTransformer) {
         Request req = new Request.Builder()
                 .get()
                 .url(url)
@@ -177,11 +177,11 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
     // The class provided in this is kinda unneeded because the only thing ever given to it
     // is Void, but I wanted to make it expandable (maybe some post methods will return objects
     // in the future)
-    private <E> Future<E> post(HttpUrl url, JSONObject jsonBody, Class<E> clazz) {
+    private <E> CompletionStage<E> post(HttpUrl url, JSONObject jsonBody, Class<E> clazz) {
         return post(url, jsonBody, new DefaultResponseTransformer<>(clazz, gson));
     }
 
-    private <E> Future<E> post(HttpUrl url, JSONObject jsonBody, ResponseTransformer<E> responseTransformer) {
+    private <E> CompletionStage<E> post(HttpUrl url, JSONObject jsonBody, ResponseTransformer<E> responseTransformer) {
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, jsonBody.toString());
 
@@ -193,7 +193,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return execute(req, responseTransformer);
     }
 
-    private <E> Future<E> execute(Request request, ResponseTransformer<E> responseTransformer) {
+    private <E> CompletionStage<E> execute(Request request, ResponseTransformer<E> responseTransformer) {
         Call call = httpClient.newCall(request);
 
         final CompletableFuture<E> future = new CompletableFuture<>();
