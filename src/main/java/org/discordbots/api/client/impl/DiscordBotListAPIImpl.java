@@ -207,30 +207,28 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
 
             @Override
             public void onResponse(Call call, Response response) {
-                if(response.isSuccessful()) {
-                    try {
+                try {
+
+                    if (response.isSuccessful()) {
                         E transformed = responseTransformer.transform(response);
                         future.complete(transformed);
-                    } catch (Exception e) {
-                        future.completeExceptionally(e);
-                    }
-                } else {
-                    try {
+                    } else {
                         String message = response.message();
 
                         // DBL sends error messages as part of the body and leaves the
                         // actual message blank so this will just pull that instead because
                         // it's 1000x more useful than the actual message
-                        if(message == null || message.isEmpty()) {
+                        if (message == null || message.isEmpty()) {
                             JSONObject body = new JSONObject(response.body().string());
                             message = body.getString("error");
                         }
 
                         Exception e = new UnsuccessfulHttpException(response.code(), message);
                         future.completeExceptionally(e);
-                    } catch (Exception e) {
-                        future.completeExceptionally(e);
                     }
+
+                } catch (Exception e) {
+                    future.completeExceptionally(e);
                 }
             }
         });
