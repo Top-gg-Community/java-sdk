@@ -69,7 +69,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("bots")
                 .addPathSegment(botId)
-                .addPathSegment("votes")
+                .addPathSegment("stats")
                 .build();
 
         return post(url, jsonBody, Void.class);
@@ -201,6 +201,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                System.out.println("fail");
                 future.completeExceptionally(e);
             }
 
