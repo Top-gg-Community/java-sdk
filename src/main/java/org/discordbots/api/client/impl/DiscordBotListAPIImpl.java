@@ -6,6 +6,7 @@ import org.discordbots.api.client.DiscordBotListAPI;
 import org.discordbots.api.client.entity.*;
 import org.discordbots.api.client.io.DefaultResponseTransformer;
 import org.discordbots.api.client.io.ResponseTransformer;
+import org.discordbots.api.client.io.UnsuccessfulHttpException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
     public CompletionStage<Void> setStats(int shardId, int shardTotal, int serverCount) {
         JSONObject json = new JSONObject()
                 .put("shard_id", shardId)
-                .put("shard_total", shardTotal)
+                .put("shard_count", shardTotal)
                 .put("server_count", serverCount);
 
         return setStats(json);
@@ -201,17 +202,35 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                System.out.println("fail");
                 future.completeExceptionally(e);
             }
 
             @Override
             public void onResponse(Call call, Response response) {
-                try {
-                    E transformed = responseTransformer.transform(response);
-                    future.complete(transformed);
-                } catch (Exception e) {
-                    future.completeExceptionally(e);
+                if(response.isSuccessful()) {
+                    try {
+                        E transformed = responseTransformer.transform(response);
+                        future.complete(transformed);
+                    } catch (Exception e) {
+                        future.completeExceptionally(e);
+                    }
+                } else {
+                    try {
+                        String message = response.message();
+
+                        // DBL sends error messages as part of the body and leaves the
+                        // actual message blank so this will just pull that instead because
+                        // it's 1000x more useful than the actual message
+                        if(message == null || message.isEmpty()) {
+                            JSONObject body = new JSONObject(response.body().string());
+                            message = body.getString("error");
+                        }
+
+                        Exception e = new UnsuccessfulHttpException(response.code(), message);
+                        future.completeExceptionally(e);
+                    } catch (Exception e) {
+                        future.completeExceptionally(e);
+                    }
                 }
             }
         });
