@@ -46,7 +46,9 @@ api.setStats(shardServerCounts);
 
 ```java
 String userId = ...; // ID of the user you're checking
-boolean hasVoted = api.hasVoted(userId).get();
+api.hasVoted(userId).whenComplete((hasVoted, e) -> {;
+	// do something with the hasVoted variable here
+});
 ```
 
 ## Download
