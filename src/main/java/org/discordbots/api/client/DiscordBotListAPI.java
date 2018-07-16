@@ -30,8 +30,8 @@ public interface DiscordBotListAPI {
     class Builder {
 
         // Required
-        private String botId;
-        private String token;
+        private String botId = null;
+        private String token = null;
 
         // Optional
         private OkHttpClient httpClient = new OkHttpClient();
@@ -58,6 +58,12 @@ public interface DiscordBotListAPI {
         }
 
         public DiscordBotListAPI build() {
+            if(token == null)
+                throw new IllegalArgumentException("The provided token cannot be null!");
+
+            if(botId == null)
+                throw new IllegalArgumentException("The provided bot ID cannot be null!");
+
             return new DiscordBotListAPIImpl(token, botId, gson, httpClient);
         }
 
