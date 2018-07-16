@@ -1,9 +1,7 @@
 package org.discordbots.api.client.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.SerializedName;
 
-@JsonIgnoreProperties
 public class User extends SimpleUser {
 
     @SerializedName("defAvatar")
