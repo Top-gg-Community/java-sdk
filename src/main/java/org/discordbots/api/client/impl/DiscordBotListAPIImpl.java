@@ -161,8 +161,8 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         });
     }
 
-    private <E> CompletionStage<E> get(HttpUrl url, Class<E> clazz) {
-        return get(url, new DefaultResponseTransformer<>(clazz, gson));
+    private <E> CompletionStage<E> get(HttpUrl url, Class<E> aClass) {
+        return get(url, new DefaultResponseTransformer<>(aClass, gson));
     }
 
     private <E> CompletionStage<E> get(HttpUrl url, ResponseTransformer<E> responseTransformer) {
@@ -177,8 +177,8 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
     // The class provided in this is kinda unneeded because the only thing ever given to it
     // is Void, but I wanted to make it expandable (maybe some post methods will return objects
     // in the future)
-    private <E> CompletionStage<E> post(HttpUrl url, JSONObject jsonBody, Class<E> clazz) {
-        return post(url, jsonBody, new DefaultResponseTransformer<>(clazz, gson));
+    private <E> CompletionStage<E> post(HttpUrl url, JSONObject jsonBody, Class<E> aClass) {
+        return post(url, jsonBody, new DefaultResponseTransformer<>(aClass, gson));
     }
 
     private <E> CompletionStage<E> post(HttpUrl url, JSONObject jsonBody, ResponseTransformer<E> responseTransformer) {
