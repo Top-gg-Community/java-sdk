@@ -95,6 +95,8 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
                 .build();
 
         return get(url, resp -> {
+            // This is kinda awkward but this is done so that it can return it was a list instead of
+            // an array
             ResponseTransformer<SimpleUser[]> arrayTransformer = new DefaultResponseTransformer<>(SimpleUser[].class, gson);
             return Arrays.asList(arrayTransformer.transform(resp));
         });
