@@ -10,6 +10,7 @@ import org.discordbots.api.client.io.UnsuccessfulHttpException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -86,14 +87,17 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return get(url, BotStats.class);
     }
 
-    public CompletionStage<SimpleUser[]> getVoters(String botId) {
+    public CompletionStage<List<SimpleUser>> getVoters(String botId) {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("bots")
                 .addPathSegment(botId)
                 .addPathSegment("votes")
                 .build();
 
-        return get(url, SimpleUser[].class);
+        return get(url, resp -> {
+            ResponseTransformer<SimpleUser[]> arrayTransformer = new DefaultResponseTransformer<>(SimpleUser[].class, gson);
+            return Arrays.asList(arrayTransformer.transform(resp));
+        });
     }
 
     public CompletionStage<Bot> getBot(String botId) {
