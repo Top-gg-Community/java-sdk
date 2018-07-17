@@ -25,7 +25,6 @@ public class User extends SimpleUser {
     public boolean isCertifiedDev() { return certifiedDev; }
     public boolean isSupporter() { return supporter; }
 
-
     private class Social {
         String youtube, reddit, twitter, instagram, github;
     }
