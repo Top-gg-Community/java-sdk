@@ -13,5 +13,4 @@ public class BotStats {
 
     public int getServerCount() { return serverCount; }
     public List<Integer> getShards() { return Collections.unmodifiableList(shards); }
-
 }
