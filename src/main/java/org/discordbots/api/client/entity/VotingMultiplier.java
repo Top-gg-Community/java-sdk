@@ -2,7 +2,7 @@ package org.discordbots.api.client.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-public class VotingMultplier {
+public class VotingMultiplier {
 
     @SerializedName("is_weekend")
     private boolean weekend;
