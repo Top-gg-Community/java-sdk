@@ -1,6 +1,8 @@
 package org.discordbots.api.client.impl;
 
+import com.fatboyindustrial.gsonjavatime.OffsetDateTimeConverter;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import okhttp3.*;
 import org.discordbots.api.client.DiscordBotListAPI;
 import org.discordbots.api.client.entity.*;
@@ -10,6 +12,7 @@ import org.discordbots.api.client.io.UnsuccessfulHttpException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -30,11 +33,15 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
 
     private final String token, botId;
 
-    public DiscordBotListAPIImpl(String token, String botId, Gson gson, OkHttpClient httpClient) {
+    public DiscordBotListAPIImpl(String token, String botId) {
         this.token = token;
         this.botId = botId;
-        this.gson = gson;
-        this.httpClient = httpClient.newBuilder()
+
+        this.gson = new GsonBuilder()
+                .registerTypeAdapter(OffsetDateTime.class, new OffsetDateTimeConverter())
+                .create();
+
+        this.httpClient = new OkHttpClient.Builder()
                 .addInterceptor((chain) -> {
                     Request req = chain.request().newBuilder()
                             .addHeader("Authorization", this.token)
