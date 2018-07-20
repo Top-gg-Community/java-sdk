@@ -4,11 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class User extends SimpleUser {
 
-    private String id;
-    private String username;
-    private String discriminator;
-
-    private String avatar;
     @SerializedName("defAvatar")
     private String defaultAvatar;
 
