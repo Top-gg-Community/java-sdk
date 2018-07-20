@@ -168,6 +168,14 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         });
     }
 
+    public CompletionStage<VotingMultplier> getVotingMultiplier() {
+        HttpUrl url = baseUrl.newBuilder()
+                .addPathSegment("weekend")
+                .build();
+
+        return get(url, VotingMultplier.class);
+    }
+
     private <E> CompletionStage<E> get(HttpUrl url, Class<E> aClass) {
         return get(url, new DefaultResponseTransformer<>(aClass, gson));
     }

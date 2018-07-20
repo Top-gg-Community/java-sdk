@@ -28,6 +28,8 @@ public interface DiscordBotListAPI {
 
     CompletionStage<User> getUser(String userId);
 
+    CompletionStage<VotingMultplier> getVotingMultiplier();
+
     class Builder {
 
         // Required
