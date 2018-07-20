@@ -28,4 +28,5 @@ public class Result<T> {
     public int getTotal() {
         return total;
     }
+
 }

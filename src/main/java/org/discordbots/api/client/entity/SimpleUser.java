@@ -10,10 +10,20 @@ public class SimpleUser {
 
 
 
-    public String getId() { return id; }
-    public String getUsername() { return username; }
-    public String getDiscriminator() { return discriminator; }
+    public String getId() {
+        return id;
+    }
 
-    public String getAvatar() { return avatar; }
+    public String getUsername() {
+        return username;
+    }
+
+    public String getDiscriminator() {
+        return discriminator;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
 
 }
