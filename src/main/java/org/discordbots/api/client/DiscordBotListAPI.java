@@ -1,7 +1,5 @@
 package org.discordbots.api.client;
 
-import com.google.gson.Gson;
-import okhttp3.OkHttpClient;
 import org.discordbots.api.client.entity.*;
 import org.discordbots.api.client.impl.DiscordBotListAPIImpl;
 
@@ -36,10 +34,6 @@ public interface DiscordBotListAPI {
         private String botId = null;
         private String token = null;
 
-        // Optional
-        private OkHttpClient httpClient = new OkHttpClient();
-        private Gson gson = new Gson();
-
         public Builder token(String token) {
             this.token = token;
             return this;
@@ -50,16 +44,6 @@ public interface DiscordBotListAPI {
             return this;
         }
 
-        public Builder httpClient(OkHttpClient httpClient) {
-            this.httpClient = httpClient;
-            return this;
-        }
-
-        public Builder gson(Gson gson) {
-            this.gson = gson;
-            return this;
-        }
-
         public DiscordBotListAPI build() {
             if(token == null)
                 throw new IllegalArgumentException("The provided token cannot be null!");
@@ -67,7 +51,7 @@ public interface DiscordBotListAPI {
             if(botId == null)
                 throw new IllegalArgumentException("The provided bot ID cannot be null!");
 
-            return new DiscordBotListAPIImpl(token, botId, gson, httpClient);
+            return new DiscordBotListAPIImpl(token, botId);
         }
 
     }
