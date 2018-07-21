@@ -51,6 +51,14 @@ api.hasVoted(userId).whenComplete((hasVoted, e) -> {;
 });
 ```
 
+### Getting voting multiplier
+
+```java
+api.getVotingMultiplier().whenComplete((multiplier, e) -> {
+	// do something with the multiplier here
+});
+```
+
 ## Download
 
 Replace `VERSION` with the latest version or commit hash. The latest version can be found under releases.
