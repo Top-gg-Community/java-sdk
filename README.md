@@ -54,7 +54,7 @@ api.hasVoted(userId).whenComplete((hasVoted, e) -> {
 });
 ```
 
-### Getting voting multiplier
+#### Getting voting multiplier
 
 ```java
 api.getVotingMultiplier().whenComplete((multiplier, e) -> {
