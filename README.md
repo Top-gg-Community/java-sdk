@@ -67,6 +67,8 @@ api.getVotingMultiplier().whenComplete((multiplier, e) -> {
 
 ## Download
 
+[![Release](https://jitpack.io/v/DiscordBotList/DBL-Java-Library.svg)](https://jitpack.io/#DiscordBotList/DBL-Java-Library)
+
 Replace `VERSION` with the latest version or commit hash. The latest version can be found under releases.
 
 #### Maven
