@@ -46,16 +46,22 @@ api.setStats(shardServerCounts);
 
 ```java
 String userId = ...; // ID of the user you're checking
-api.hasVoted(userId).whenComplete((hasVoted, e) -> {;
-	// do something with the hasVoted variable here
+api.hasVoted(userId).whenComplete((hasVoted, e) -> {
+	if(hasVoted)
+		System.out.println("This person has voted!");
+	else
+		System.out.println("This person has not voted!");
 });
 ```
 
-### Getting voting multiplier
+#### Getting voting multiplier
 
 ```java
 api.getVotingMultiplier().whenComplete((multiplier, e) -> {
-	// do something with the multiplier here
+	if(multiplier.isWeekend())
+		System.out.println("It's the weekend, so votes are worth 2x!");
+	else
+		System.out.println("It's not the weekend :pensive:");
 });
 ```
 
