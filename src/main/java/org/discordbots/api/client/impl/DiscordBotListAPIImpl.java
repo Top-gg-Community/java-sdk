@@ -250,6 +250,8 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
 
                 } catch (Exception e) {
                     future.completeExceptionally(e);
+                } finally {
+                    response.body().close();
                 }
             }
         });
