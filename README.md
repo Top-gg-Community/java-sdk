@@ -84,7 +84,7 @@ Replace `VERSION` with the latest version or commit hash. The latest version can
 ```xml
 <dependencies>
     <dependency>
-        <groupId>com.github.DiscordBotList</groupId>
+        <groupId>com.discordbots</groupId>
         <artifactId>DBL-Java-Library</artifactId>
         <version>VERSION</version>
     </dependency>
@@ -99,7 +99,7 @@ repositories {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.DiscordBotList:DBL-Java-Library:VERSION'
+    compile 'com.discordbots:DBL-Java-Library:VERSION'
 }
 ```
 
