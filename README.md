@@ -27,11 +27,11 @@ api.setStats(serverCount);
 **#2**
 Posts the server count for an individual shard.
 ```java
-int serverCount = ...; // the server count of this shard
 int shardId = ...; // the id of this shard
 int shardCount = ...; // the amount of shards
+int serverCount = ...; // the server count of this shard
 
-api.setStats(serverCount, shardId, shardCount);
+api.setStats(shardId, shardCount, serverCount);
 ```
 
 **#3**
