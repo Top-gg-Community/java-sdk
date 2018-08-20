@@ -27,11 +27,11 @@ api.setStats(serverCount);
 **#2**
 Posts the server count for an individual shard.
 ```java
-int serverCount = ...; // the server count of this shard
 int shardId = ...; // the id of this shard
 int shardCount = ...; // the amount of shards
+int serverCount = ...; // the server count of this shard
 
-api.setStats(serverCount, shardId, shardCount);
+api.setStats(shardId, shardCount, serverCount);
 ```
 
 **#3**
@@ -67,6 +67,8 @@ api.getVotingMultiplier().whenComplete((multiplier, e) -> {
 
 ## Download
 
+[![Release](https://jitpack.io/v/DiscordBotList/DBL-Java-Library.svg)](https://jitpack.io/#DiscordBotList/DBL-Java-Library)
+
 Replace `VERSION` with the latest version or commit hash. The latest version can be found under releases.
 
 #### Maven
@@ -82,7 +84,7 @@ Replace `VERSION` with the latest version or commit hash. The latest version can
 ```xml
 <dependencies>
     <dependency>
-        <groupId>com.github.DiscordBotList</groupId>
+        <groupId>org.discordbots</groupId>
         <artifactId>DBL-Java-Library</artifactId>
         <version>VERSION</version>
     </dependency>
@@ -97,7 +99,7 @@ repositories {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.DiscordBotList:DBL-Java-Library:VERSION'
+    compile 'org.discordbots:DBL-Java-Library:VERSION'
 }
 ```
 
