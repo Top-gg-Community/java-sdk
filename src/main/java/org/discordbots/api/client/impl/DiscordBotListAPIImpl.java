@@ -240,8 +240,10 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
                         // actual message blank so this will just pull that instead because
                         // it's 1000x more useful than the actual message
                         if (message == null || message.isEmpty()) {
-                            JSONObject body = new JSONObject(response.body().string());
-                            message = body.getString("error");
+                            try {
+                                JSONObject body = new JSONObject(response.body().string());
+                                message = body.getString("error");
+                            } catch (Exception ignored) {}
                         }
 
                         Exception e = new UnsuccessfulHttpException(response.code(), message);
