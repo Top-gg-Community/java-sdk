@@ -23,7 +23,7 @@ public interface DiscordBotListAPI {
     CompletionStage<BotStats> getStats();
 
     /**
-     * Gets the last 1000 votes <b>only</b>
+     * If you have more than 1000 votes every month, <b>do not use this method</b>
      * @return a list of users who have voted for the bot in the past 24 hours.
      */
     CompletionStage<List<SimpleUser>> getVoters();
