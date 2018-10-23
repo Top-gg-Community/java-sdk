@@ -1,7 +1,9 @@
 package org.discordbots.api.client.entity;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
 
+@Getter
 public class User extends SimpleUser {
 
     @SerializedName("defAvatar")
@@ -11,39 +13,5 @@ public class User extends SimpleUser {
     private boolean artist, certifiedDev, supporter;
 
     private Social social;
-
-
-
-    public String getDefaultAvatar() {
-        return defaultAvatar;
-    }
-
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public boolean isMod() {
-        return mod;
-    }
-
-    public boolean isWebMod() {
-        return webMod;
-    }
-
-    public boolean isArtist() {
-        return artist;
-    }
-
-    public boolean isCertifiedDev() {
-        return certifiedDev;
-    }
-
-    public boolean isSupporter() {
-        return supporter;
-    }
-
-    public Social getSocial() {
-        return social;
-    }
 
 }

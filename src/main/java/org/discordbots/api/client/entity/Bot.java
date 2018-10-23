@@ -1,10 +1,12 @@
 package org.discordbots.api.client.entity;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
 
 import java.time.OffsetDateTime;
 import java.util.List;
 
+@Getter
 public class Bot {
 
     private String id;
@@ -46,99 +48,4 @@ public class Bot {
     private int points;
 
     private boolean legacy;
-
-
-
-    public String getId() {
-        return id;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getDiscriminator() {
-        return discriminator;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public String getDefaultAvatar() {
-        return defaultAvatar;
-    }
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public String getInvite() {
-        return invite;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public String getVanity() {
-        return vanity;
-    }
-
-    public String getSupport() {
-        return support;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public String getLongDescription() {
-        return longDescription;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public String getBetaDescription() {
-        return betaDescription;
-    }
-
-    public boolean isCertified() {
-        return certified;
-    }
-
-    public OffsetDateTime getApprovalTime() {
-        return approvalTime;
-    }
-
-    public long getServerCount() {
-        return serverCount;
-    }
-
-    public List<String> getGuilds() {
-        return guilds;
-    }
-
-    public List<Integer> getShards() {
-        return shards;
-    }
-
-    public int getMonthlyPoints() {
-        return monthlyPoints;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public boolean isLegacy() {
-        return legacy;
-    }
-
 }
