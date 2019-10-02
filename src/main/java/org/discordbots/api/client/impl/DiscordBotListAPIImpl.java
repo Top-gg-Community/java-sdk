@@ -24,7 +24,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
 
     private static final HttpUrl baseUrl = new HttpUrl.Builder()
             .scheme("https")
-            .host("discordbots.org")
+            .host("top.gg")
             .addPathSegment("api")
             .build();
 

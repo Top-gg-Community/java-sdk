@@ -1,5 +1,5 @@
 # DBL Java Library
-A Java wrapper for the [discordbots.org API](https://discordbots.org/api/docs)
+A Java wrapper for the [top.gg API](https://top.gg/api/docs)
 
 ## Usage
 
