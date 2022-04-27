@@ -1,7 +1,9 @@
 package org.discordbots.api.client.entity;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
 
+@Getter
 public class Vote {
 
     @SerializedName("bot")
@@ -15,27 +17,5 @@ public class Vote {
 
     @SerializedName("isWeekend")
     private boolean weekend;
-
-
-
-    public String getBotId() {
-        return botId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getQuery() {
-        return query;
-    }
-
-    public boolean isWeekend() {
-        return weekend;
-    }
 
 }

@@ -84,7 +84,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return post(url, jsonBody, Void.class);
     }
 
-    public CompletionStage<BotStats> getStats(String botId) {
+    public CompletionStage<BotStats> getStats() {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("bots")
                 .addPathSegment(botId)
@@ -94,7 +94,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
         return get(url, BotStats.class);
     }
 
-    public CompletionStage<List<SimpleUser>> getVoters(String botId) {
+    public CompletionStage<List<SimpleUser>> getVoters() {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("bots")
                 .addPathSegment(botId)
@@ -107,6 +107,11 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
             ResponseTransformer<SimpleUser[]> arrayTransformer = new DefaultResponseTransformer<>(SimpleUser[].class, gson);
             return Arrays.asList(arrayTransformer.transform(resp));
         });
+    }
+
+    @Override
+    public CompletionStage<Bot> getBot() {
+        return getBot(botId);
     }
 
     public CompletionStage<Bot> getBot(String botId) {

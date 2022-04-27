@@ -1,5 +1,8 @@
 package org.discordbots.api.client.entity;
 
+import lombok.Getter;
+
+@Getter
 public class SimpleUser {
 
     private String id;
@@ -7,23 +10,4 @@ public class SimpleUser {
     private String discriminator;
 
     private String avatar;
-
-
-
-    public String getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getDiscriminator() {
-        return discriminator;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
 }
