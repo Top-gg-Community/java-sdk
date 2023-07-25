@@ -7,6 +7,7 @@ import okhttp3.*;
 import org.discordbots.api.client.DiscordBotListAPI;
 import org.discordbots.api.client.entity.*;
 import org.discordbots.api.client.io.DefaultResponseTransformer;
+import org.discordbots.api.client.io.EmptyResponseTransformer;
 import org.discordbots.api.client.io.ResponseTransformer;
 import org.discordbots.api.client.io.UnsuccessfulHttpException;
 import org.json.JSONObject;
@@ -81,7 +82,7 @@ public class DiscordBotListAPIImpl implements DiscordBotListAPI {
                 .addPathSegment("stats")
                 .build();
 
-        return post(url, jsonBody, Void.class);
+        return post(url, jsonBody, new EmptyResponseTransformer());
     }
 
     public CompletionStage<BotStats> getStats(String botId) {
